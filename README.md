@@ -14,6 +14,9 @@ Any changes you make to your deployed app will be automatically pushed to this r
 
 Your project is live at:
 
+**[https://v0-product-sales-website.vercel.app](https://v0-product-sales-website.vercel.app)**
+
+Vercel Dashboard:
 **[https://vercel.com/gustavojeanpt-3741s-projects/v0-product-sales-website](https://vercel.com/gustavojeanpt-3741s-projects/v0-product-sales-website)**
 
 ## Build your app
