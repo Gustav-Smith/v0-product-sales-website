@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createPixPayment, checkPixPaymentStatus } from '@/app/actions/stripe'
+export const dynamic = "force-dynamic";
 
 export async function POST(request: NextRequest) {
   try {
