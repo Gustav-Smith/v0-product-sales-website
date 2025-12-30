@@ -1,0 +1,12 @@
+[build]
+  base = "v0-product-sales-website/"
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
