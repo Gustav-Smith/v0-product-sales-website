@@ -37,24 +37,36 @@ export default function Home() {
             Empresa Certificada e Regulamentada
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-balance">
-            Limpe Seu Nome e<span className="text-primary"> Recupere Seu Crédito</span>
+            Negativado? <span className="text-primary">Recupere Sua Vida Financeira</span>
           </h1>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto text-pretty">
-            Soluções profissionais para regularizar sua situação financeira e aumentar seu score de crédito. Mais de
-            15.000 clientes satisfeitos em todo o Brasil.
+            Está com nome sujo e não consegue crédito? Somos especialistas em limpar seu nome em até 60 dias. 
+            Mais de 15.000 clientes já recuperaram sua liberdade financeira conosco.
           </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <a href="#servicos">
+              <button className="bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 rounded-lg text-lg font-semibold transition-colors">
+                Limpar Meu Nome Agora
+              </button>
+            </a>
+            <a href="#contato">
+              <button className="bg-secondary text-secondary-foreground hover:bg-secondary/80 px-8 py-4 rounded-lg text-lg font-semibold transition-colors">
+                Falar com Especialista
+              </button>
+            </a>
+          </div>
           <div className="flex flex-wrap justify-center gap-8 mt-12">
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-green-600" />
-              <span className="text-sm font-medium">100% Seguro</span>
+              <span className="text-sm font-medium">Resultado Garantido</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-green-600" />
-              <span className="text-sm font-medium">Resultados Garantidos</span>
+              <span className="text-sm font-medium">100% Online</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-green-600" />
-              <span className="text-sm font-medium">Suporte Especializado</span>
+              <span className="text-sm font-medium">Suporte Personalizado</span>
             </div>
           </div>
         </div>
@@ -115,6 +127,50 @@ export default function Home() {
         </div>
       </section>
 
+      {/* How It Works Section - Explicação clara do processo */}
+      <section id="como-funciona" className="py-20 px-4 bg-secondary/30">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Como Funciona</h2>
+            <p className="text-xl text-muted-foreground">Processo simples e rápido para limpar seu nome</p>
+          </div>
+
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="bg-primary text-primary-foreground w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">
+                1
+              </div>
+              <h3 className="text-lg font-bold mb-2">Análise Gratuita</h3>
+              <p className="text-muted-foreground">Enviamos seus dados e analisamos sua situação sem custo</p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-primary text-primary-foreground w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">
+                2
+              </div>
+              <h3 className="text-lg font-bold mb-2">Plano Personalizado</h3>
+              <p className="text-muted-foreground">Criamos uma estratégia específica para seu caso</p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-primary text-primary-foreground w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">
+                3
+              </div>
+              <h3 className="text-lg font-bold mb-2">Execução</h3>
+              <p className="text-muted-foreground">Negociamos e removemos todos os apontamentos</p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-primary text-primary-foreground w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">
+                4
+              </div>
+              <h3 className="text-lg font-bold mb-2">Nome Limpo</h3>
+              <p className="text-muted-foreground">Você recupera seu crédito e vida financeira</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Products Section */}
       <section id="servicos" className="py-20 px-4">
         <div className="container mx-auto max-w-7xl">
@@ -129,6 +185,41 @@ export default function Home() {
             {PRODUCTS.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Urgent Benefits Section - Por que agir agora */}
+      <section className="py-16 px-4 bg-gradient-to-r from-red-50 to-orange-50">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4 text-red-600">Por Que Não Pode Esperar</h2>
+            <p className="text-xl text-muted-foreground">Cada dia com nome sujo você perde oportunidades</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-red-500">
+              <div className="text-red-600 text-2xl font-bold mb-2">📈 Perda Financeira</div>
+              <p className="text-muted-foreground">Você perde em média R$ 15.000 por ano em juros altos por estar negativado</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-orange-500">
+              <div className="text-orange-600 text-2xl font-bold mb-2">🏠 Impossibilidade de Comprar</div>
+              <p className="text-muted-foreground">Sem crédito não consegue financiar carro, casa ou até mesmo um celular</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-lg border-l-4 border-yellow-500">
+              <div className="text-yellow-600 text-2xl font-bold mb-2">💼 Oportunidades Perdidas</div>
+              <p className="text-muted-foreground">Muitas empresas exigem nome limpo até para contratação</p>
+            </div>
+          </div>
+
+          <div className="text-center mt-8">
+            <a href="#servicos">
+              <button className="bg-red-600 text-white hover:bg-red-700 px-8 py-4 rounded-lg text-lg font-semibold transition-colors">
+                Não Perca Mais Tempo - Limpar Meu Nome Agora
+              </button>
+            </a>
           </div>
         </div>
       </section>
@@ -265,7 +356,7 @@ export default function Home() {
                 <MessageCircle className="w-6 h-6 text-primary" />
               </div>
               <div className="font-semibold mb-1">WhatsApp</div>
-              <div className="text-sm text-muted-foreground">(11) 98765-4321</div>
+              <div className="text-sm text-muted-foreground">61992910841</div>
             </div>
 
             <div className="text-center">
@@ -273,7 +364,7 @@ export default function Home() {
                 <Mail className="w-6 h-6 text-primary" />
               </div>
               <div className="font-semibold mb-1">Email</div>
-              <div className="text-sm text-muted-foreground">contato@financeclean.com.br</div>
+              <div className="text-sm text-muted-foreground">gustavojeanpt@gmail.com</div>
             </div>
 
             <div className="text-center">
@@ -281,7 +372,7 @@ export default function Home() {
                 <Clock className="w-6 h-6 text-primary" />
               </div>
               <div className="font-semibold mb-1">Horário</div>
-              <div className="text-sm text-muted-foreground">Seg-Sex: 8h às 20h</div>
+              <div className="text-sm text-muted-foreground">9h às 18h</div>
             </div>
           </div>
         </div>

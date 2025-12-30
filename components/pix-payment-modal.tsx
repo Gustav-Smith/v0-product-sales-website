@@ -6,7 +6,8 @@ import { useState, useEffect } from "react"
 import { Check, Copy, QrCode } from "lucide-react"
 import QRCode from "react-qr-code"
 
-import { createPixPayment, checkPixPaymentStatus } from "@/app/actions/stripe"
+import { generatePixPayment, getPixPaymentStatus } from "@/app/actions/pix"
+import { testServerAction } from "@/app/actions/pix-test"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Alert, AlertDescription } from "@/components/ui/alert"
@@ -74,11 +75,25 @@ export default function PixPaymentModal({
     if (paymentIntentId && paymentStatus === "processing") {
       const interval = setInterval(async () => {
         try {
-          const status = await checkPixPaymentStatus(paymentIntentId)
-          setPaymentStatus(status.status)
+          const response = await fetch('/api/pix', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              action: 'status',
+              paymentIntentId
+            })
+          })
 
-          if (status.status === "succeeded") {
-            clearInterval(interval)
+          const statusResult = await response.json()
+          
+          if (statusResult.success) {
+            setPaymentStatus(statusResult.status || "processing")
+
+            if (statusResult.status === "succeeded") {
+              clearInterval(interval)
+            }
           }
         } catch (err) {
           console.error("Erro ao verificar status:", err)
@@ -103,20 +118,77 @@ export default function PixPaymentModal({
       return
     }
 
+    // Validar formato do email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email.trim())) {
+      setError("Email inválido. Verifique o formato do email")
+      return
+    }
+
     try {
       setLoading(true)
       setError(null)
 
-      const result = await createPixPayment(productId, name.trim(), email.trim(), cleanTaxId)
-      setPaymentIntentId(result.paymentIntentId)
+      // Chamar API para gerar pagamento PIX
+      const response = await fetch('/api/pix', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          action: 'generate',
+          productId,
+          name: name.trim(),
+          email: email.trim(),
+          taxId: cleanTaxId
+        })
+      })
 
-      const status = await checkPixPaymentStatus(result.paymentIntentId)
-      setPixCode(status.pixCode)
-      setPaymentStatus(status.status)
-      setStep("payment")
+      const result = await response.json()
+      
+      if (!result.success) {
+        setError(result.error || "Erro ao gerar pagamento PIX")
+        return
+      }
+
+      setPaymentIntentId(result.paymentIntentId!)
+
+      // A API já retorna o status se disponível
+      if (result.pixCode) {
+        setPixCode(result.pixCode)
+        setPaymentStatus(result.status || "processing")
+        setStep("payment")
+      } else {
+        // Se não tiver QR Code ainda, define status processing
+        setPaymentStatus("processing")
+        setStep("payment")
+      }
     } catch (err: any) {
       console.error("Erro ao criar pagamento PIX:", err)
-      setError(err.message || "Erro ao gerar pagamento PIX")
+      setError("Erro inesperado. Tente novamente.")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  async function testApiFunction() {
+    try {
+      setLoading(true)
+      setError(null)
+      
+      const response = await fetch('/api/test')
+      const result = await response.json()
+      
+      console.log("API Test result:", result)
+      
+      if (result.success) {
+        setError(`✅ API funcionou! ${result.message} Env: ${result.envInfo?.nodeEnv}`)
+      } else {
+        setError(`❌ Erro na API: ${result.error}`)
+      }
+    } catch (err: any) {
+      console.error("Erro na API:", err)
+      setError(`❌ Erro crítico na API: ${err.message}`)
     } finally {
       setLoading(false)
     }
@@ -219,6 +291,23 @@ export default function PixPaymentModal({
                     </>
                   ) : (
                     "Gerar Código PIX"
+                  )}
+                </Button>
+
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  className="w-full" 
+                  onClick={testApiFunction}
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <>
+                      <Spinner className="mr-2 h-4 w-4" />
+                      Testando...
+                    </>
+                  ) : (
+                    "Testar API"
                   )}
                 </Button>
               </form>
