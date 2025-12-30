@@ -7,12 +7,9 @@ const nextConfig = {
     unoptimized: true,
   },
   experimental: {
-    serverActions: true
-  },
-  output: 'export',
-  trailingSlash: true,
-  images: {
-    unoptimized: true
+    serverActions: {
+      allowedOrigins: ["localhost:3000", "127.0.0.1:3000"]
+    }
   }
 }
 
