@@ -8,12 +8,9 @@ const nextConfig = {
   },
   experimental: {
     serverActions: {
-      allowedOrigins: ["localhost:3000", "127.0.0.1:3000"]
+      allowedOrigins: ["localhost:3000", "127.0.0.1:3000", "financeclean.netlify.app"]
     }
-  },
-  output: 'export',
-  trailingSlash: true,
-  distDir: 'out'
+  }
 }
 
 export default nextConfig
