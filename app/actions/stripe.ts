@@ -3,7 +3,7 @@
 import { stripe } from "@/lib/stripe"
 import { PRODUCTS } from "@/lib/products"
 
-export async function startCheckoutSession(productId: string) {
+export async function startCheckoutSession(productId: string): Promise<string> {
   try {
     const product = PRODUCTS.find((p) => p.id === productId)
 
@@ -31,6 +31,10 @@ export async function startCheckoutSession(productId: string) {
       mode: "payment",
       payment_method_types: ["card"], // Usar apenas card que é universalmente suportado
     })
+
+    if (!session.client_secret) {
+      throw new Error("Erro ao criar sessão: client_secret não encontrado")
+    }
 
     return session.client_secret
   } catch (error: any) {

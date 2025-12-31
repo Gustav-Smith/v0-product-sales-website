@@ -7,6 +7,10 @@ import { loadStripe } from "@stripe/stripe-js"
 import { startCheckoutSession } from "@/app/actions/stripe"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
+if (typeof window !== 'undefined') {
+  console.log("NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:", process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY?.substring(0, 10) + "...")
+}
+
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
 interface CheckoutModalProps {
@@ -17,9 +21,20 @@ interface CheckoutModalProps {
 }
 
 export default function CheckoutModal({ productId, productName, isOpen, onClose }: CheckoutModalProps) {
+  if (typeof window !== 'undefined') {
+    console.log("CheckoutModal renderizado:", { productId, productName, isOpen })
+  }
+  
   const fetchClientSecret = useCallback(() => {
+    if (typeof window !== 'undefined') {
+      console.log("Buscando client secret para productId:", productId)
+    }
     return startCheckoutSession(productId)
   }, [productId])
+
+  if (!isOpen) {
+    return null
+  }
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
