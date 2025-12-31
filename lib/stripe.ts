@@ -6,4 +6,7 @@ import Stripe from "stripe"
 console.log("Stripe key length:", process.env.STRIPE_SECRET_KEY?.length)
 console.log("Stripe key starts with sk_test:", process.env.STRIPE_SECRET_KEY?.startsWith("sk_test"))
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+// Fallback para ambiente de build sem variáveis de ambiente
+const stripeKey = process.env.STRIPE_SECRET_KEY || "sk_test_placeholder"
+
+export const stripe = new Stripe(stripeKey)
