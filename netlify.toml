@@ -4,10 +4,16 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/_next/static/*"
+  to = "/_next/static/:splat"
   status = 200
 
 [[redirects]]
