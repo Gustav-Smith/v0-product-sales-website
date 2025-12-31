@@ -1,33 +1,72 @@
-# Product sales website
+# FinanceClean - Limpeza de Nome Profissional
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+![FinanceClean Website](financeclean-screenshot.png)
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/gustavojeanpt-3741s-projects/v0-product-sales-website)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/tlT3fl6vQS9)
+## Sobre o Projeto
 
-## Overview
+Site profissional para serviços de limpeza de nome e proteção de crédito. Desenvolvido com Next.js 16, TypeScript e Stripe para pagamentos PIX seguros.
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+## Funcionalidades
 
-## Deployment
+- Página Principal com design profissional e responsivo
+- Pagamentos PIX integrados com Stripe
+- Design Responsivo para todos os dispositivos
+- Processamento Seguro com Server Actions
+- Performance Otimizada com Next.js
 
-Your project is live at:
+## Stack Tecnológico
 
-**[https://v0-product-sales-website.vercel.app](https://v0-product-sales-website.vercel.app)**
+- Frontend: Next.js 16, React 19, TypeScript
+- Styling: Tailwind CSS, shadcn/ui
+- Payments: Stripe (PIX)
+- Deployment: Vercel
+- Version Control: Git & GitHub
 
-Vercel Dashboard:
-**[https://vercel.com/gustavojeanpt-3741s-projects/v0-product-sales-website](https://vercel.com/gustavojeanpt-3741s-projects/v0-product-sales-website)**
+## Deploy
 
-## Build your app
+Seu site está disponível em:
+[https://financeclean-pro.vercel.app](https://financeclean-pro.vercel.app)
 
-Continue building your app on:
+### Como fazer deploy:
 
-**[https://v0.app/chat/tlT3fl6vQS9](https://v0.app/chat/tlT3fl6vQS9)**
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/Gustav-Smith/v0-product-sales-website.git
+   cd v0-product-sales-website
+   ```
 
-## How It Works
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+3. Configure as variáveis de ambiente:
+   ```bash
+   cp .env.example .env.local
+   # Adicione suas chaves do Stripe
+   ```
+
+4. Rode localmente:
+   ```bash
+   npm run dev
+   ```
+
+5. Faça deploy na Vercel:
+   ```bash
+   npm run build
+   # Importe no Vercel: https://vercel.com/new
+   ```
+
+## Contato
+
+- WhatsApp: (61) 99291-0841
+- Email: gustavojeanpt@gmail.com
+- Horário: 9h às 18h
+
+## Licença
+
+Este projeto é privado e todos os direitos são reservados.
+
+---
+
+Desenvolvido com para FinanceClean
